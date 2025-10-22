@@ -1,0 +1,76 @@
+'use client'
+import { useEffect, useState } from "react";
+
+import Image from "next/image";
+import profileImg from "../../public/asserts/my_photo.png"; // <-- Add your image here
+
+export default function HeroSection() {
+  const [animatedSkills, setAnimatedSkills] = useState([]);
+
+  useEffect(() => {
+    // Simulate loading animation with a slight delay
+    const timeoutId = setTimeout(() => {
+      setAnimatedSkills([
+        { label: "UX/UI", value: "80%" },
+        { label: "Mobile Application", value: "60%" },
+        { label: "Web Application", value: "70%" },
+      ]);
+    }, 500); // Delay for better animation effect
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  return (
+    <section className="bg-[#121212] text-white py-24 px-8 flex flex-col md:flex-row items-center justify-between">
+      {/* Left Content */}
+      <div className="max-w-xl">
+        <p className="text-lg">
+          <span className="text-orange-500 font-semibold">Hi</span> I am
+        </p>
+        <h1 className="text-4xl md:text-5xl font-bold mt-2 text-gray-300">
+          Mirshad Ahamed
+        </h1>
+        <h2 className="text-5xl md:text-6xl font-extrabold mt-4 bg-gradient-to-r from-orange-400 to-yellow-600 text-transparent bg-clip-text">
+          Full stack developer
+        </h2>
+
+        {/* Buttons with hover animations */}
+        <div className="mt-8 flex gap-6">
+          <button className="bg-gradient-to-r from-orange-500 to-yellow-500 py-3 px-8 rounded-md font-semibold hover:opacity-90 transition-all duration-300">
+            Hire Me
+          </button>
+          <button className="border border-white py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
+            Download CV
+          </button>
+        </div>
+
+        {/* Skills with animated progress bars */}
+        <div className="mt-10 space-y-5">
+          {animatedSkills.map((skill, index) => (
+            <div key={index}>
+              <p className="font-semibold">{skill.label}</p>
+              <div className="w-full bg-gray-700 h-2 rounded-full mt-2">
+                <div
+                  className="bg-orange-500 h-2 rounded-full transition-all duration-1000 ease-in-out"
+                  style={{ width: skill.value }}
+                ></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Image with animation */}
+      <div className="mt-10 md:mt-0 relative">
+        <div className="w-80 h-80 md:w-[380px] md:h-[380px] bg-gray-800 rounded-full absolute -z-10"></div>
+        <Image
+          src={profileImg}
+          alt="Profile"
+          className="relative rounded-lg object-cover transform transition-all duration-1000 ease-in-out animate-fadeIn"
+          width={380}
+          height={380}
+        />
+      </div>
+    </section>
+  );
+}
