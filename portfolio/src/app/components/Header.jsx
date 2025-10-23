@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-900 text-white p-5 flex justify-between items-center">
+    <header className="bg-gray-900 text-white p-5 flex justify-between items-center fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/5">
       
 
       {/* Hamburger Menu for Mobile */}
@@ -55,13 +55,13 @@ const Header = () => {
 
       {/* Hire Me Button - Responsive */}
       <div className="flex items-center md:block">
-        <a
-          href="#hire-me"
-          className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 transition duration-300"
-        >
-          Hire Me
-        </a>
-      </div>
+  <a
+    href="#hire-me"
+    className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transition-all duration-300 transform active:scale-95"
+  >
+    Hire Me
+  </a>
+</div>
     </header>
   );
 };

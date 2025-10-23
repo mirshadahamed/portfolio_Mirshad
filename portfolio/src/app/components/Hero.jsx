@@ -35,7 +35,8 @@ export default function HeroSection() {
 
         {/* Buttons with hover animations */}
         <div className="mt-8 flex gap-6 justify-center md:justify-start">
-          <button className="bg-gradient-to-r from-orange-500 to-yellow-500 py-3 px-8 rounded-md font-semibold hover:opacity-90 transition-all duration-300">
+          <button  className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transition-all duration-300 transform active:scale-95"
+>
             Hire Me
           </button>
           <button className="border border-white py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
