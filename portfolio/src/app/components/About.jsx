@@ -42,9 +42,9 @@ const About = () => {
           </p>
 
           {/* Button */}
-          <button className="mt-6 bg-gradient-to-r from-orange-500 to-yellow-600 text-white py-2 px-6 rounded-lg shadow-lg hover:opacity-90 transition">
-            Download CV
-          </button>
+          <button className="mt-6 bg-gradient-to-r from-orange-500 to-yellow-600 text-white py-2 px-6 rounded-lg shadow-lg hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 hover:opacity-100 transition-all duration-300">
+  Download CV
+</button>
         </div>
       </div>
     </section>

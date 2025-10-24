@@ -19,30 +19,36 @@ export default function Services() {
         </p>
       </div>
 
-     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
   {/* Card 1 */}
-  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50">
-    <Image src={img} alt="Web Development" className="w-48 h-48 mb-4 object-cover rounded-full" />
-    <h3 className="text-xl font-bold mb-2">Web Applications</h3>
-    <p className="text-gray-400 text-sm">
-      Turning your big web ideas into functional, reliable and user loving sites.
+  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50 backdrop-blur-md bg-white/5">
+    <div className="flex justify-center mb-4">
+      <Image src={img} alt="Web Development" className="w-48 h-48 object-cover rounded-full" />
+    </div>
+    <h3 className="text-xl font-bold mb-2 text-center">Web Applications</h3>
+    <p className="text-gray-400 text-sm text-center">
+      Turning your big web ideas into functional, reliable, and user-loving sites.
     </p>
   </div>
 
   {/* Card 2 */}
-  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50">
-    <Image src={img1} alt="Mobile Development" className="w-48 h-48 mb-4 object-cover rounded-full" />
-    <h3 className="text-xl font-bold mb-2">Mobile Application</h3>
-    <p className="text-gray-400 text-sm">
+  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50 backdrop-blur-md bg-white/5">
+    <div className="flex justify-center mb-4">
+      <Image src={img1} alt="Mobile Development" className="w-48 h-48 object-cover rounded-full" />
+    </div>
+    <h3 className="text-xl font-bold mb-2 text-center">Mobile Application</h3>
+    <p className="text-gray-400 text-sm text-center">
       Building seamless mobile apps with modern technologies.
     </p>
   </div>
 
   {/* Card 3 */}
-  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50">
-    <Image src={img2} alt="UI/UX Design" className="w-48 h-48 mb-4 object-cover rounded-full" />
-    <h3 className="text-xl font-bold mb-2">UX Designs</h3>
-    <p className="text-gray-400 text-sm">
+  <div className="bg-[#1e1e1e] p-8 rounded-2xl hover:scale-105 transition-transform hover:shadow-2xl hover:shadow-orange-500/50 backdrop-blur-md bg-white/5">
+    <div className="flex justify-center mb-4">
+      <Image src={img2} alt="UI/UX Design" className="w-48 h-48 object-cover rounded-full" />
+    </div>
+    <h3 className="text-xl font-bold mb-2 text-center">UX Designs</h3>
+    <p className="text-gray-400 text-sm text-center">
       Crafting human-centered designs that deliver smooth user experiences.
     </p>
   </div>

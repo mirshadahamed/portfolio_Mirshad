@@ -1,5 +1,5 @@
-// components/Footer.js
 import Link from 'next/link';
+import { FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from 'react-icons/fa'; // Import social media icons
 
 const Footer = () => {
   return (
@@ -12,14 +12,17 @@ const Footer = () => {
 
         {/* Social Icons */}
         <div className="flex gap-6 mb-4">
-          <Link href="https://www.instagram.com" target="_blank" className="hover:text-orange-500">
-            Instagram
+          <Link href="https://www.instagram.com" target="_blank" className="text-xl hover:text-orange-500">
+            <FaInstagram />
           </Link>
-          <Link href="https://www.linkedin.com" target="_blank" className="hover:text-orange-500">
-            LinkedIn
+          <Link href="https://www.linkedin.com" target="_blank" className="text-xl hover:text-orange-500">
+            <FaLinkedin />
           </Link>
-          <Link href="https://www.github.com" target="_blank" className="hover:text-orange-500">
-            GitHub
+          <Link href="https://www.github.com" target="_blank" className="text-xl hover:text-orange-500">
+            <FaGithub />
+          </Link>
+          <Link href="https://wa.me/+94763958485" target="_blank" className="text-xl hover:text-orange-500">
+            <FaWhatsapp />
           </Link>
         </div>
 

@@ -35,8 +35,7 @@ export default function HeroSection() {
 
         {/* Buttons with hover animations */}
         <div className="mt-8 flex gap-6 justify-center md:justify-start">
-          <button  className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transition-all duration-300 transform active:scale-95"
->
+          <button className="bg-orange-500 text-white py-2 px-6 rounded-full hover:bg-orange-600 hover:shadow-xl hover:shadow-orange-500/50 transition-all duration-300 transform active:scale-95">
             Hire Me
           </button>
           <button className="border border-white py-3 px-8 rounded-md hover:bg-white hover:text-black transition-all duration-300">
@@ -60,10 +59,10 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Right Image with a round gray background */}
-      <div className="mt-10 md:mt-0 relative">
+      {/* Right Image with a round gray background - Adjusted positioning */}
+      <div className="mt-10 md:mt-0 relative md:-ml-118 lg:-ml-16">
         {/* Gray circle background */}
-        <div className="w-80 h-80 md:w-[380px] md:h-[380px] bg-gray-880 rounded-full absolute -z-10"></div>
+        <div className="w-80 h-80 md:w-[380px] md:h-[380px] bg-gray-800 rounded-full absolute -z-10"></div>
         
         {/* Profile image */}
         <Image
