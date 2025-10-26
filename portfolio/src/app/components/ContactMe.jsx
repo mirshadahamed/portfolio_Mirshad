@@ -1,5 +1,7 @@
-'use client'
+'use client';
+
 import { useState } from 'react';
+import emailjs from 'emailjs-com'; // Import EmailJS SDK
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -21,21 +23,41 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Send the form data to the backend API
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    // Send the email using EmailJS
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+      };
 
-    const data = await res.json();
-    if (res.status === 200) {
+      // Send notification to you (admin)
+      await emailjs.send(
+        'service_y99jezw',  // Service ID (found in EmailJS dashboard)
+        'template_cbykp4y', // Template ID (created in EmailJS)
+        templateParams,
+        'CP6FyzPAee1lTSTzf'      // User ID (found in EmailJS dashboard)
+      );
+
+      // Send auto-response to the person who contacted you
+      const autoResponseParams = {
+        to_name: formData.name,
+        to_email: formData.email,
+        message: 'Thank you for contacting us! We will get back to you shortly.',
+      };
+
+      await emailjs.send(
+        'service_y99jezw',
+        'template_yv1ljcq',
+        autoResponseParams,
+        'CP6FyzPAee1lTSTzf'
+      );
+
+      // Show success message and reset form
       setStatus({ type: 'success', message: 'Message sent successfully!' });
-      setFormData({ name: '', email: '', message: '' }); // Reset form fields
-    } else {
-      setStatus({ type: 'error', message: data.error || 'Something went wrong!' });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setStatus({ type: 'error', message: 'Something went wrong!' });
     }
   };
 
@@ -97,7 +119,7 @@ export default function ContactForm() {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-gradient-to-r from-orange-500 to-yellow-500 py-3 px-8 rounded-md font-semibold hover:opacity-90 transition-all duration-300"
+              className="mt-6 bg-gradient-to-r from-orange-500 to-yellow-600 text-white py-3 px-8 rounded-md font-semibold hover:opacity-90 transition-all duration-300"
             >
               Send
             </button>
