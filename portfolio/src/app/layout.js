@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: 'Mirshad Ahamed - Full Stack Developer',
+  title: 'Mirshad Ahamed ',
   description: 'Portfolio website of Mirshad Ahamed, a Full Stack Developer',
 };
 

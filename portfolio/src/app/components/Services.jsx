@@ -1,161 +1,317 @@
 'use client'
-import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import img from '../../public/asserts/web.png';
-import img1 from '../../public/asserts/mobile.png';
-import img2 from '../../public/asserts/uiux.png';
 
 export default function Services() {
+  const [activeService, setActiveService] = useState(1);
+
   const services = [
     {
       id: 1,
-      title: "Web Applications",
-      description: "Turning your big web ideas into functional, reliable, and user-loving sites.",
-      image: img,
-      command: "startWebServer()",
-      tech: ["React", "Next.js", "Node.js", "Express"]
+      title: "WEB APPLICATIONS",
+      description: "Building high-performance web applications with cutting-edge technologies and optimized code.",
+      longDescription: "Specializing in Next.js, React, and modern web technologies. Creating fast, scalable, and secure web applications with optimal performance and SEO optimization.",
+      command: "> npm start web",
+      tech: ["NEXT.JS", "REACT", "TYPESCRIPT", "NODE.JS", "TAILWIND", "MONGODB"],
+      stats: [
+        { label: "Performance", value: "+95%" },
+        { label: "Uptime", value: "99.9%" },
+        { label: "SEO Score", value: "100/100" }
+      ],
+      terminal: [
+        "$ npm init web_project",
+        "$ installing dependencies...",
+        "$ building application...",
+        "$ deployment successful!",
+        "> web_server_started: true"
+      ]
     },
     {
       id: 2,
-      title: "Mobile Application",
-      description: "Building seamless mobile apps with modern technologies.",
-      image: img1,
-      command: "buildMobileApp()",
-      tech: ["React Native", "Flutter", "iOS", "Android"]
+      title: "MOBILE APPLICATIONS",
+      description: "Developing cross-platform mobile applications with native performance and smooth UX.",
+      longDescription: "Expert in React Native and Flutter for building high-performance mobile apps. Focus on smooth animations, offline capabilities, and native device integration.",
+      command: "> adb start mobile",
+      tech: ["REACT NATIVE", "FLUTTER", "KOTLIN", "FIREBASE", "REDUX", "ANDROID SDK"],
+      stats: [
+        { label: "Cross-Platform", value: "100%" },
+        { label: "FPS", value: "60fps" },
+        { label: "App Store", value: "5.0★" }
+      ],
+      terminal: [
+        "$ react-native init mobile_project",
+        "$ compiling native modules...",
+        "$ optimizing performance...",
+        "$ building APK/IPA...",
+        "> mobile_app_ready: true"
+      ]
     },
     {
       id: 3,
-      title: "UX Designs",
-      description: "Crafting human-centered designs that deliver smooth user experiences.",
-      image: img2,
-      command: "designUserInterface()",
-      tech: ["Figma", "Adobe XD", "User Research", "Prototyping"]
+      title: "UX/UI DESIGNS",
+      description: "Creating intuitive user interfaces with focus on usability and visual appeal.",
+      longDescription: "Designing user-centric interfaces with pixel-perfect precision. From wireframes to interactive prototypes, delivering exceptional user experiences.",
+      command: "> figma export design",
+      tech: ["FIGMA", "ADOBE XD", "USER RESEARCH", "PROTOTYPING", "DESIGN SYSTEMS", "ANIMATION"],
+      stats: [
+        { label: "User Satisfaction", value: "98%" },
+        { label: "Prototype Speed", value: "2x Faster" },
+        { label: "Design Quality", value: "Premium" }
+      ],
+      terminal: [
+        "$ mkdir design_project",
+        "$ creating wireframes...",
+        "$ designing components...",
+        "$ exporting assets...",
+        "> design_exported: true"
+      ]
     }
   ];
 
+  const selectedService = services.find(s => s.id === activeService);
+
   return (
-    <section className="bg-black text-white py-10 px-6 font-mono">
-      {/* Section Title */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold tracking-wide text-gray-300 mb-4">
-          <span className="text-orange-500">//</span> SERVICES
-        </h2>
-        <div className="text-gray-500 max-w-2xl mx-auto text-lg">
-          <span className="text-green-500">/*</span> Building scalable, user-focused applications with clean, efficient code <span className="text-green-500">*/</span>
+    <section className="relative bg-black text-white py-28 px-6 md:px-20 font-mono relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0">
+        {/* Floating Particles */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-gradient-to-r from-orange-500/20 to-yellow-500/20"
+            style={{
+              width: `${Math.random() * 10 + 2}px`,
+              height: `${Math.random() * 10 + 2}px`,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 1, 0.3],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_49%,#f97316_50%,transparent_51%)] bg-[size:40px_40px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,transparent_49%,#f97316_50%,transparent_51%)] bg-[size:40px_40px]" />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {services.map((service, index) => (
-          <motion.div
-            key={service.id}
-            className="group"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -10 }}
-            viewport={{ once: true }}
-          >
-            {/* Card with new hover effects */}
-            <div className="relative bg-gray-900/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-800 transition-all duration-300 group-hover:border-orange-500 group-hover:shadow-xl group-hover:shadow-orange-500/20 overflow-hidden">
-              
-              {/* Animated background on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 via-transparent to-yellow-600/0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-              
-              {/* Glowing corner effect */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-orange-500 to-transparent rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
-              <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-yellow-600 to-transparent rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500"></div>
+      <div className="relative z-10">
+        {/* Section Header with Glow - MATCHING ABOUT SECTION STYLE */}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="w-10 h-px bg-gradient-to-r from-transparent to-orange-500"></div>
+            <span className="text-orange-500 text-lg tracking-widest">SERVICES</span>
+            <div className="w-10 h-px bg-gradient-to-l from-transparent to-orange-500"></div>
+          </div>
+          
+          <h2 className="text-5xl md:text-6xl font-bold">
+            <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              What I Offer
+            </span>
+            <br />
+            <span className="text-white">Digital Solutions</span>
+          </h2>
+          
+          <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">
+            Comprehensive development services to bring your digital ideas to life
+          </p>
+        </motion.div>
 
-              {/* Command Terminal Header */}
-              <div className="mb-4 p-3 bg-black/50 rounded-lg border border-gray-800 group-hover:border-gray-700 transition-colors duration-300">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-green-500"></div>
-                  </div>
-                  <span className="text-gray-500 text-sm">service_{service.id}.js</span>
-                </div>
-                <div className="text-green-400 font-bold group-hover:text-orange-400 transition-colors duration-300">
-                  <span className="text-gray-500">$</span> {service.command}
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Left: Service Selection Panel */}
+          <div className="space-y-6">
+            <div className="bg-black/80 border border-orange-500/20 rounded-lg p-6 backdrop-blur-sm">
+              <div className="text-green-400 font-mono text-sm mb-4">
+                $ select_service --
+              </div>
+              
+              <div className="space-y-3">
+                {services.map((service) => (
+                  <motion.button
+                    key={service.id}
+                    onClick={() => setActiveService(service.id)}
+                    className={`w-full text-left p-4 rounded border transition-all duration-300 font-mono ${
+                      activeService === service.id
+                        ? 'bg-orange-500/20 border-orange-500 text-white'
+                        : 'bg-black/50 border-gray-800 text-gray-400 hover:border-orange-500/50 hover:text-white'
+                    }`}
+                    whileHover={{ x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="text-orange-500">[{service.id}]</span>
+                        <span className="font-bold tracking-wider">{service.title}</span>
+                      </div>
+                      <span className="text-xs text-green-400">
+                        {activeService === service.id ? "ACTIVE" : "READY"}
+                      </span>
+                    </div>
+                    <div className="mt-2 text-sm text-gray-400">
+                      {service.description}
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </div>
+
+            {/* Stats Panel */}
+            <div className="bg-black/80 border border-yellow-500/20 rounded-lg p-6 backdrop-blur-sm">
+              <div className="text-yellow-400 font-mono text-sm mb-4">
+                $ service_stats --
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+                {selectedService.stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-center p-4 bg-black/50 border border-gray-800 rounded"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div className="text-2xl font-bold text-orange-400 font-mono">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-gray-400 mt-1">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Terminal Output */}
+          <div className="bg-black/90 border border-orange-500/30 rounded-lg overflow-hidden">
+            {/* Terminal Header */}
+            <div className="bg-gray-900/50 px-4 py-3 border-b border-orange-500/30 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-orange-500 font-mono">$</span>
+                <span className="text-green-400 font-mono">{selectedService.command}</span>
+              </div>
+              <div className="text-xs text-gray-500 font-mono">
+                STATUS: <span className="text-green-400">RUNNING</span>
+              </div>
+            </div>
+
+            {/* Terminal Output */}
+            <div className="p-6 font-mono">
+              <div className="space-y-2 mb-6">
+                {selectedService.terminal.map((line, index) => (
+                  <motion.div
+                    key={index}
+                    className="text-gray-400"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.2 }}
+                  >
+                    {line.startsWith('$') ? (
+                      <span className="text-green-400">{line}</span>
+                    ) : line.startsWith('>') ? (
+                      <span className="text-orange-400">{line}</span>
+                    ) : (
+                      <span className="text-gray-400">{line}</span>
+                    )}
+                  </motion.div>
+                ))}
               </div>
 
-              {/* Image with hover effect */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <Image 
-                    src={service.image} 
-                    alt={service.title} 
-                    className="w-40 h-40 object-cover rounded-full border-2 border-gray-800 group-hover:border-orange-500 group-hover:scale-105 transition-all duration-300" 
-                  />
-                  <div className="absolute -bottom-2 -right-2 bg-black px-3 py-1 rounded-full border border-gray-700 text-xs group-hover:border-orange-500 group-hover:bg-orange-900/30 transition-all duration-300">
-                    <span className="text-orange-500 group-hover:text-yellow-400 transition-colors duration-300">{service.tech[0]}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold mb-3 text-center text-gray-300 group-hover:text-white transition-colors duration-300">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-400 text-sm text-center mb-6 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
-                {service.description}
-              </p>
-
-              {/* Tech Stack with hover effects */}
-              <div className="mt-6 pt-4 border-t border-gray-800 group-hover:border-gray-700 transition-colors duration-300">
-                <div className="text-green-400 text-sm mb-2 group-hover:text-yellow-400 transition-colors duration-300">
-                  // tech_stack
-                </div>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {service.tech.map((tech, idx) => (
-                    <span 
-                      key={idx}
-                      className="px-3 py-1 bg-gray-800 rounded-full text-xs text-gray-300 border border-gray-700 group-hover:border-orange-500 group-hover:bg-gray-900 transition-all duration-300"
+              {/* Tech Stack */}
+              <div className="mt-8">
+                <div className="text-yellow-400 mb-3">// TECH_STACK</div>
+                <div className="flex flex-wrap gap-2">
+                  {selectedService.tech.map((tech, index) => (
+                    <motion.span
+                      key={tech}
+                      className="px-3 py-1.5 bg-gray-900/50 border border-gray-800 rounded text-sm text-gray-300 font-mono"
+                      whileHover={{ 
+                        scale: 1.05,
+                        borderColor: "#f97316",
+                        backgroundColor: "rgba(249, 115, 22, 0.1)"
+                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>
+            </div>
 
-              {/* Status Indicator */}
-              <div className="mt-6 flex items-center justify-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse group-hover:animate-none group-hover:bg-orange-500 transition-colors duration-300"></div>
-                <span className="text-xs text-gray-500">status: <span className="text-green-400 group-hover:text-orange-400 transition-colors duration-300">available</span></span>
-              </div>
-
-              {/* Hover indicator */}
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-orange-500 opacity-0 group-hover:opacity-100 group-hover:bottom-2 transition-all duration-300 text-xs">
-                ↓ hover active
+            {/* Terminal Footer */}
+            <div className="bg-gray-900/50 px-4 py-3 border-t border-orange-500/30">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                    <span className="text-xs text-gray-400 font-mono">SERVICE_ACTIVE</span>
+                  </div>
+                  <span className="text-xs text-orange-400 font-mono">CPU: 42%</span>
+                  <span className="text-xs text-blue-400 font-mono">RAM: 3.2GB</span>
+                </div>
+                <div className="text-xs text-gray-500 font-mono">
+                  <span className="text-yellow-400">[CTRL+C]</span> TO EXIT
+                </div>
               </div>
             </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Terminal Footer */}
-      <div className="mt-16 max-w-3xl mx-auto bg-gray-900/50 p-6 rounded-xl border border-gray-800 backdrop-blur-sm">
-        <div className="text-green-400 mb-3">$ services --status</div>
-        <div className="text-gray-300 space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-green-500">✓</span>
-            <span>Web Applications: <span className="text-orange-500">Ready for deployment</span></span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-green-500">✓</span>
-            <span>Mobile Applications: <span className="text-orange-500">Cross-platform support</span></span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-green-500">✓</span>
-            <span>UX Designs: <span className="text-orange-500">User-centric approach</span></span>
           </div>
         </div>
-        <div className="mt-4 text-gray-500 text-sm">
-          <span className="text-green-500">//</span> All services include maintenance & support
+
+        {/* Service Status Summary */}
+        <div className="bg-black/80 border border-gray-800 rounded-lg p-6 backdrop-blur-sm">
+          <div className="text-orange-400 font-mono text-sm mb-4">
+            $ service_status --
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {services.map((service) => (
+              <motion.div
+                key={service.id}
+                className={`p-4 border rounded font-mono ${
+                  activeService === service.id
+                    ? 'border-orange-500 bg-orange-500/10'
+                    : 'border-gray-800 bg-black/50'
+                }`}
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-white font-bold tracking-wider">{service.title}</span>
+                  <span className={`text-xs px-2 py-1 rounded ${
+                    activeService === service.id
+                      ? 'bg-orange-500 text-white'
+                      : 'bg-gray-800 text-gray-400'
+                  }`}>
+                    ID: {service.id}
+                  </span>
+                </div>
+                <div className="text-sm text-gray-400 mb-3">{service.description}</div>
+                <div className="text-xs text-green-400">STATUS: ONLINE</div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-gray-800">
+            <div className="text-center text-gray-500 text-sm font-mono">
+              <span className="text-green-400">//</span> SERVICES READY FOR DEPLOYMENT <span className="text-green-400">//</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
