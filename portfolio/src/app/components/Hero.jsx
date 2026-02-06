@@ -1,12 +1,70 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import profileImg from "../../public/asserts/my_photo.png";
 
 export default function HeroSection() {
   const [animatedSkills, setAnimatedSkills] = useState([]);
-  const [isHovering, setIsHovering] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  
+  const typingSpeed = 30; // ms per character
+  const deletingSpeed = 20; // ms per character when deleting
+  const pauseDuration = 2000; // pause before deleting
+  const cursorBlinkSpeed = 500; // ms for cursor blink
+  
+  const fullText = "Building calm, high-performance products with care and precision. I design and engineer digital experiences with a focus on clarity, speed, and thoughtful details. From product strategy to production-ready builds.";
+  
+  // Cursor blink effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setIsCursorVisible(prev => !prev);
+    }, cursorBlinkSpeed);
+    
+    return () => clearInterval(cursorInterval);
+  }, []);
+  
+  // Typing animation effect
+  useEffect(() => {
+    let timeout;
+    
+    if (isTyping && !isDeleting) {
+      // Typing forward
+      if (currentIndex < fullText.length) {
+        timeout = setTimeout(() => {
+          setDisplayedText(fullText.substring(0, currentIndex + 1));
+          setCurrentIndex(currentIndex + 1);
+        }, typingSpeed);
+      } else {
+        // Finished typing, pause then start deleting
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, pauseDuration);
+      }
+    } else if (isDeleting) {
+      // Deleting backwards
+      if (currentIndex > 0) {
+        timeout = setTimeout(() => {
+          setDisplayedText(fullText.substring(0, currentIndex - 1));
+          setCurrentIndex(currentIndex - 1);
+        }, deletingSpeed);
+      } else {
+        // Finished deleting, start typing again
+        setIsDeleting(false);
+        timeout = setTimeout(() => {
+          setCurrentIndex(0);
+        }, 500);
+      }
+    }
+    
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [currentIndex, isTyping, isDeleting, fullText]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -21,7 +79,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="bg-black text-white pt-32 pb-24 px-6 md:px-20 font-mono relative overflow-hidden">
+    <section id="home" className="bg-black text-white pt-32 pb-24 px-6 md:px-20 font-mono relative overflow-hidden">
       {/* Minimal Grid Background */}
       <div className="absolute inset-0 opacity-3">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-yellow-600/5 to-orange-400/5"></div>
@@ -37,20 +95,22 @@ export default function HeroSection() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Minimal greeting */}
-          <div className="mb-8">
-            <div className="text-orange-500 text-sm font-medium mb-2 flex items-center gap-2">
+          {/* Welcome message - NOW AT TOP */}
+          <div className="mb-6">
+            <p className="text-lg text-gray-400 mb-8">
+              Welcome to my digital space
+            </p>
+            
+            {/* "Hi, I'm" - NOW BELOW WELCOME MESSAGE */}
+            <div className="text-orange-500 text-sm font-medium mb-4 flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
               <span>Hi, I'm</span>
             </div>
-            <p className="text-lg text-gray-400">
-              Welcome to my digital space
-            </p>
           </div>
 
           {/* Name with subtle effect */}
           <motion.h1 
-            className="text-5xl md:text-6xl font-bold mt-2 text-white tracking-tight"
+            className="text-5xl md:text-6xl font-bold mt-2 text-white tracking-tight mb-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
@@ -59,7 +119,7 @@ export default function HeroSection() {
           </motion.h1>
 
           {/* Title with clean design */}
-          <div className="relative mt-8">
+          <div className="relative mt-8 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-300">
               <span className="text-orange-500">&lt;</span>FULL STACK DEVELOPER<span className="text-orange-500">/&gt;</span>
             </h2>
@@ -67,41 +127,66 @@ export default function HeroSection() {
             <div className="w-48 h-0.5 bg-gradient-to-r from-orange-500 to-yellow-500 mt-3"></div>
           </div>
 
-          {/* Download Button - Clean Modern Style */}
-          <div className="mt-12">
-            <motion.button
-              className="group relative"
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {/* Main button */}
-              <div className="relative bg-gradient-to-r from-orange-500 to-yellow-600 text-white rounded-lg py-4 px-8 overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:shadow-orange-500/30">
-                {/* Button content */}
-                <div className="flex items-center justify-center gap-3">
-                  <motion.div
-                    animate={isHovering ? { y: [-2, 2, -2] } : { y: 0 }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
-                    className="text-white"
-                  >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </motion.div>
-                  <span className="font-bold tracking-wider text-lg">
-                    Download CV
-                  </span>
-                  <motion.span
-                    animate={isHovering ? { x: 5 } : { x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-white"
-                  >
-                    ↓
-                  </motion.span>
-                </div>
+          {/* Hero Copy with Typing Animation */}
+          <div className="mt-10 text-gray-300 text-lg leading-relaxed min-h-[180px]">
+            {/* Typing animation container */}
+            <div className="relative">
+              {/* Animated text with typewriter effect */}
+              <motion.div 
+                className="inline-block text-left font-mono whitespace-pre-wrap"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {displayedText}
+                
+                {/* Blinking cursor */}
+                <motion.span
+                  className={`inline-block ml-0.5 w-0.5 h-7 align-middle ${isCursorVisible ? 'bg-orange-500' : 'bg-transparent'}`}
+                  animate={{
+                    opacity: isCursorVisible ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.1 }}
+                />
+              </motion.div>
+              
+              {/* Decorative typing elements */}
+              <div className="absolute -left-6 top-0 flex items-center gap-1 opacity-30">
+                <div className="w-1 h-1 rounded-full bg-orange-500"></div>
+                <div className="w-1 h-1 rounded-full bg-orange-500"></div>
+                <div className="w-1 h-1 rounded-full bg-orange-500"></div>
               </div>
-            </motion.button>
+            </div>
+            
+            {/* Status indicator for typing */}
+            <motion.div 
+              className="flex items-center gap-2 mt-4 text-xs text-gray-500"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2, duration: 0.5 }}
+            >
+              <div className="flex items-center gap-1">
+                <div className={`w-1.5 h-1.5 rounded-full ${isTyping && !isDeleting ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'}`}></div>
+                <span>
+                  {isTyping && !isDeleting ? 'Typing...' : isDeleting ? 'Editing...' : 'Ready'}
+                </span>
+              </div>
+              
+              {/* Progress indicator */}
+              <div className="ml-4 flex items-center gap-1">
+                {[1, 2, 3].map((dot, i) => (
+                  <motion.div
+                    key={dot}
+                    className="w-1 h-1 rounded-full bg-gray-600"
+                    animate={{
+                      scale: currentIndex > i * (fullText.length / 3) ? 1.2 : 0.8,
+                      opacity: currentIndex > i * (fullText.length / 3) ? 1 : 0.3,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* Skills - Clean Minimal Style */}
@@ -194,14 +279,6 @@ export default function HeroSection() {
               <span className="text-orange-400 text-sm font-medium">NODE.JS</span>
             </motion.div>
           </div>
-          
-          {/* Status Indicator */}
-          {/* <div className="absolute -bottom-20 right-4 md:right-8">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full border border-orange-500/30">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-xs text-gray-300">Available for work</span>
-            </div>
-          </div> */}
         </motion.div>
       </div>
     </section>

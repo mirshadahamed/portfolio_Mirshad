@@ -49,7 +49,7 @@ const Footer = () => {
           >
             <div className="flex flex-col items-center lg:items-start">
               <div className="text-4xl font-bold bg-gradient-to-r from-orange-500 to-yellow-600 text-transparent bg-clip-text mb-3">
-                MA
+                Mirshad Ahamed
               </div>
               <p className="text-gray-400 max-w-xs">
                 Full Stack Developer crafting digital experiences with modern technologies
@@ -128,9 +128,7 @@ const Footer = () => {
           <p className="text-gray-500 text-sm">
             &copy; {currentYear} Mirshad Ahamed. All rights reserved.
           </p>
-          <p className="text-gray-600 text-xs mt-2">
-            Crafted with ❤️ using Next.js & Tailwind CSS
-          </p>
+          
         </motion.div>
       </div>
     </footer>

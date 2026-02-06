@@ -58,7 +58,7 @@ const About = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-20 px-6 md:px-16 lg:px-24 font-mono relative overflow-hidden">
+    <section id="about" className="bg-black text-white py-20 px-6 md:px-16 lg:px-24 font-mono relative overflow-hidden">
       {/* Cyber Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(transparent_24px,#0ea5e9_25px)] bg-[size:50px_50px] opacity-5">
         <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24px,#0ea5e9_25px)] bg-[size:50px_50px]" />
@@ -77,35 +77,29 @@ const About = () => {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Section Header - Cyber Style */}
+        {/* Section Header - MATCHING PROJECTS PAGE STYLE */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-cyan-400 to-cyan-400"></div>
-            <div className="relative">
-              <span className="text-cyan-400 text-sm font-mono tracking-[0.5em] uppercase bg-black px-4 py-2 border border-cyan-400/30">
-                00101010
-              </span>
-              <div className="absolute -inset-1 border border-cyan-400/20 blur-sm"></div>
-            </div>
-            <div className="h-px flex-1 bg-gradient-to-l from-transparent via-cyan-400 to-cyan-400"></div>
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="w-10 h-px bg-gradient-to-r from-transparent to-cyan-500"></div>
+            <span className="text-cyan-500 text-lg tracking-widest">ABOUT</span>
+            <div className="w-10 h-px bg-gradient-to-l from-transparent to-cyan-500"></div>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
-            <span className="text-white">ABOUT_</span>
-            <span className="text-cyan-400">DEV</span>
-            <span className="text-white">()</span>
-            <span className="text-cyan-400">{"{"}</span>
-            <span className="text-white">CODE</span>
-            <span className="text-cyan-400">{"}"}</span>
-          </h1>
+          <h2 className="text-5xl md:text-6xl font-bold">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              About
+            </span>
+            <br />
+            <span className="text-white">Me</span>
+          </h2>
           
-          <p className="text-gray-400 font-mono text-lg max-w-2xl mx-auto tracking-wide">
-            // BUILDING SECURE, SCALABLE SYSTEMS WITH MODERN ARCHITECTURE
+          <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">
+            My journey in technology, skills, and development philosophy
           </p>
         </motion.div>
 

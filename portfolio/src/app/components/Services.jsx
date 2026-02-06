@@ -12,7 +12,7 @@ export default function Services() {
       description: "Building high-performance web applications with cutting-edge technologies and optimized code.",
       longDescription: "Specializing in Next.js, React, and modern web technologies. Creating fast, scalable, and secure web applications with optimal performance and SEO optimization.",
       command: "> npm start web",
-      tech: ["NEXT.JS", "REACT", "TYPESCRIPT", "NODE.JS", "TAILWIND", "MONGODB"],
+      tech: ["NEXT.JS", "REACT", "TYPESCRIPT", "NODE.JS", "TAILWIND", "MONGODB","C","C++"],
       stats: [
         { label: "Performance", value: "+95%" },
         { label: "Uptime", value: "99.9%" },
@@ -32,7 +32,7 @@ export default function Services() {
       description: "Developing cross-platform mobile applications with native performance and smooth UX.",
       longDescription: "Expert in React Native and Flutter for building high-performance mobile apps. Focus on smooth animations, offline capabilities, and native device integration.",
       command: "> adb start mobile",
-      tech: ["REACT NATIVE", "FLUTTER", "KOTLIN", "FIREBASE", "REDUX", "ANDROID SDK"],
+      tech: ["REACT NATIVE", , "KOTLIN", "FIREBASE", "ANDROID SDK"],
       stats: [
         { label: "Cross-Platform", value: "100%" },
         { label: "FPS", value: "60fps" },
@@ -52,7 +52,7 @@ export default function Services() {
       description: "Creating intuitive user interfaces with focus on usability and visual appeal.",
       longDescription: "Designing user-centric interfaces with pixel-perfect precision. From wireframes to interactive prototypes, delivering exceptional user experiences.",
       command: "> figma export design",
-      tech: ["FIGMA", "ADOBE XD", "USER RESEARCH", "PROTOTYPING", "DESIGN SYSTEMS", "ANIMATION"],
+      tech: ["FIGMA",  "PROTOTYPING", "DESIGN SYSTEMS"],
       stats: [
         { label: "User Satisfaction", value: "98%" },
         { label: "Prototype Speed", value: "2x Faster" },
@@ -114,7 +114,7 @@ export default function Services() {
         >
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="w-10 h-px bg-gradient-to-r from-transparent to-orange-500"></div>
-            <span className="text-orange-500 text-lg tracking-widest">SERVICES</span>
+            <span className="text-orange-500 text-lg tracking-widest">About</span>
             <div className="w-10 h-px bg-gradient-to-l from-transparent to-orange-500"></div>
           </div>
           
