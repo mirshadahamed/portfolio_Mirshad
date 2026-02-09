@@ -129,83 +129,17 @@ const Header = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative px-4 sm:px-6 lg:px-8">
+      <div className="relative px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo/Spacer */}
-            <div className="w-8" />
+          <div className="flex justify-between items-center h-14 sm:h-16 md:h-16">
+            {/* Logo/Spacer - hidden on mobile to save space */}
+            <div className="hidden lg:block w-8" />
 
-            {/* Horizontal Scrolling Navigation for Mobile */}
-            <div className="flex-1 md:hidden overflow-hidden mx-4">
-              <div 
-                ref={scrollContainerRef}
-                className="flex overflow-x-auto scrollbar-hide py-2 space-x-2"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-              >
-                {navItems.map((item) => (
-                  <motion.div
-                    key={item.name}
-                    className="relative flex-shrink-0"
-                    onMouseEnter={() => setHoveredLink(item.name)}
-                    onMouseLeave={() => setHoveredLink(null)}
-                    onClick={() => handleLinkClick(item.name, item.href, item.sectionId)}
-                  >
-                    <div
-                      className="relative px-4 py-2 rounded-lg overflow-hidden cursor-pointer"
-                    >
-                      {/* Glass Background */}
-                      <div className="absolute inset-0 bg-orange-500/5 backdrop-blur-sm rounded-lg border border-orange-500/10" />
-                      
-                      {/* Hover Orange/Yellow Fill */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-yellow-500/20"
-                        initial={false}
-                        animate={{
-                          scale: hoveredLink === item.name || activeLink === item.name ? 1 : 0,
-                          opacity: hoveredLink === item.name || activeLink === item.name ? 1 : 0,
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      
-                      {/* Active Border */}
-                      {activeLink === item.name && (
-                        <motion.div
-                          className="absolute inset-0 rounded-lg border border-orange-500/50"
-                          layoutId="activeBorder"
-                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                      )}
-                      
-                      {/* Text */}
-                      <span className="relative px-2">
-                        <span className={`text-sm font-medium transition-colors duration-200 ${
-                          activeLink === item.name 
-                            ? 'text-orange-400' 
-                            : 'text-gray-300 hover:text-orange-300'
-                        }`}>
-                          {item.name}
-                        </span>
-                      </span>
-                      
-                      {/* Orange Drop Indicator */}
-                      <motion.div
-                        className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-1 h-1 rounded-full bg-gradient-to-r from-orange-400 to-yellow-400"
-                        animate={{
-                          scale: hoveredLink === item.name ? [1, 1.5, 1] : 0,
-                          opacity: hoveredLink === item.name ? [0.5, 1, 0.5] : 0,
-                        }}
-                        transition={{
-                          duration: 0.8,
-                        }}
-                      />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+            {/* Spacer for mobile/tablet to balance layout */}
+            <div className="lg:hidden flex-1" />
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1" ref={navRef}>
+            <nav className="hidden lg:flex items-center gap-1" ref={navRef}>
               {navItems.map((item) => (
                 <motion.div
                   key={item.name}
@@ -362,29 +296,31 @@ const Header = () => {
               </motion.div>
             </nav>
 
-            {/* Mobile Menu Button - Only shown when horizontal nav isn't enough */}
+            {/* Mobile/Tablet Menu Button */}
             <motion.button
-              className="md:hidden relative w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+              className="lg:hidden relative w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ml-2"
               onClick={toggleMenu}
               whileTap={{ scale: 0.9 }}
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMenuOpen}
             >
               {/* Glass Background */}
               <div className="absolute inset-0 bg-orange-500/10 backdrop-blur-sm rounded-lg border border-orange-500/20" />
               
               {/* Icon */}
-              <div className="relative w-6 h-6">
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6">
                 <motion.span
-                  className="absolute left-0 top-1 w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
+                  className="absolute left-0 top-1 w-5 sm:w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
                   animate={isMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.span
-                  className="absolute left-0 top-3 w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
+                  className="absolute left-0 top-2.5 sm:top-3 w-5 sm:w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
                   animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
                   transition={{ duration: 0.3 }}
                 />
                 <motion.span
-                  className="absolute left-0 bottom-1 w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
+                  className="absolute left-0 bottom-1 w-5 sm:w-6 h-0.5 bg-gradient-to-r from-orange-400 to-yellow-400 rounded-full"
                   animate={isMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
                   transition={{ duration: 0.3 }}
                 />
@@ -394,11 +330,11 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Orange/Yellow Theme */}
+      {/* Mobile/Tablet Menu - Orange/Yellow Theme */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden fixed inset-0 z-40"
+            className="lg:hidden fixed inset-0 z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -409,7 +345,7 @@ const Header = () => {
             
             {/* Menu Panel */}
             <motion.div
-              className="absolute top-16 left-4 right-4 bg-black/90 backdrop-blur-xl border border-orange-500/20 rounded-xl overflow-hidden"
+              className="absolute top-14 sm:top-16 left-3 right-3 sm:left-4 sm:right-4 bg-black/90 backdrop-blur-xl border border-orange-500/20 rounded-xl overflow-hidden"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
@@ -431,7 +367,7 @@ const Header = () => {
               />
               
               {/* Menu Items */}
-              <div className="relative divide-y divide-orange-500/10">
+              <div className="relative divide-y divide-orange-500/10 max-h-96 overflow-y-auto">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}
@@ -441,7 +377,7 @@ const Header = () => {
                   >
                     <div
                       onClick={() => handleLinkClick(item.name, item.href, item.sectionId)}
-                      className={`block px-6 py-4 text-sm font-medium transition-colors cursor-pointer ${
+                      className={`block px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-medium transition-colors cursor-pointer ${
                         activeLink === item.name
                           ? 'text-orange-400 bg-orange-500/10'
                           : 'text-gray-300 hover:text-orange-300 hover:bg-orange-500/5'
@@ -465,12 +401,12 @@ const Header = () => {
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.2, delay: navItems.length * 0.05 }}
-                  className="p-4"
+                  className="p-3 sm:p-4"
                 >
                   <a
                     href="/resume.pdf"
                     download
-                    className="relative block w-full py-3 text-center text-sm font-semibold rounded-lg overflow-hidden group cursor-pointer"
+                    className="relative block w-full py-2 sm:py-3 text-center text-xs sm:text-sm font-semibold rounded-lg overflow-hidden group cursor-pointer"
                     onClick={() => setIsMenuOpen(false)}
                     aria-label="Download resume"
                   >
@@ -478,11 +414,11 @@ const Header = () => {
                     <div className="absolute inset-0 backdrop-blur-sm bg-black/40 rounded-lg border border-orange-500/40" />
                     
                     {/* Gradient Text */}
-                    <span className="relative flex items-center justify-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">
+                    <span className="relative flex items-center justify-center gap-2 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 flex-wrap">
                       Download Resume
                       <motion.svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-orange-400"
+                        className="h-3 w-3 sm:h-4 sm:w-4 text-orange-400"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                         animate={{
